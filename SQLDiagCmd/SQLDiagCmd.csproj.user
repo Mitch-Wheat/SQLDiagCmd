@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <StartArguments>-E -S MUTLEY -i "M:\Develop\Samples\SQLDiagRunner\SQL Server 2008 Diagnostic Information Queries (December 2012).sql" -o c:\temp -d "a.b.c_d;AdventureWorks2008;AdventureWorks2008R2" -A</StartArguments>
+  </PropertyGroup>
+</Project>
