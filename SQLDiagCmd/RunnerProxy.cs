@@ -92,14 +92,15 @@ namespace SQLDiagCmd
                     AddDashesToOption = true
                 };
                 HandleParsingErrorsInHelp(help);
+                help.AddPreOptionsLine(""); 
                 help.AddPreOptionsLine("This is free software. You may redistribute copies of it under the terms of");
                 help.AddPreOptionsLine("the MIT License <http://www.opensource.org/licenses/mit-license.php>.");
                 help.AddPreOptionsLine("It uses EPPlus <http://epplus.codeplex.com/> and");
                 help.AddPreOptionsLine("the Command Line Parser Library <http://commandline.codeplex.com/>.");
                 help.AddPreOptionsLine("");
-                help.AddPreOptionsLine("Usage: SQLDiagCmd -E -S MUTLEY -i queries.sql -o C:\\outputfolder -d databaselist -A");
-                help.AddPreOptionsLine("       SQLDiagCmd -S MUTLEY -U username -P password -i queries.sql -o C:\\outputfolder -d databaselist");
-                help.AddPreOptionsLine("       SQLDiagCmd -E -S MUTLEY -i queries.sql -o C:\\outputfolder -A");
+                help.AddPreOptionsLine("Usage: SQLDiagCmd -E -S DEVPC -i queries.sql -o C:\\outputfolder -d databaselist -A");
+                help.AddPreOptionsLine("       SQLDiagCmd -S DEVPC -U username -P password -i queries.sql -o C:\\outputfolder -d databaselist");
+                help.AddPreOptionsLine("       SQLDiagCmd -E -S DEVPC -i queries.sql -o C:\\outputfolder -A");
                 help.AddOptions(this);
 
                 //  -E -S MUTLEY -i "M:\Develop\Samples\SQLDiagRunner\TestProject1\SQL Server 2008 Diagnostic Information Queries.sql" 

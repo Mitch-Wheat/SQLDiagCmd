@@ -63,7 +63,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)SQLDiagRunner.dll" "$(SolutionDir)SQLDiagCmd\SQLDiagRunner.dll"</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)SQLDiagRunner.dll" "$(SolutionDir)SQLDiagCmd\SQLDiagRunner.dll"
+copy "$(ProjectDir)$(OutDir)SQLDiagRunner.dll" "$(SolutionDir)SQLDiagRunnerUI\SQLDiagRunner.dll"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

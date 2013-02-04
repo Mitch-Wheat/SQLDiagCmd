@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtServer = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -36,21 +37,31 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkTrustedConnection = new System.Windows.Forms.CheckBox();
             this.txtScriptLocation = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.btBrowseScriptLocation = new System.Windows.Forms.Button();
             this.btBrowseOutputFolder = new System.Windows.Forms.Button();
             this.txtOutputFolder = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btExecute = new System.Windows.Forms.Button();
             this.txtDBs = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.chkAutoFitExcelColumns = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.txtTimeout = new System.Windows.Forms.TextBox();
+            this.gbConnection = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblTimeout = new System.Windows.Forms.Label();
+            this.gbScript = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbConnection.SuspendLayout();
+            this.gbScript.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 23);
+            this.label1.Location = new System.Drawing.Point(7, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
@@ -58,23 +69,24 @@
             // 
             // txtServer
             // 
-            this.txtServer.Location = new System.Drawing.Point(74, 20);
+            this.txtServer.Location = new System.Drawing.Point(49, 19);
             this.txtServer.Name = "txtServer";
-            this.txtServer.Size = new System.Drawing.Size(144, 20);
+            this.txtServer.Size = new System.Drawing.Size(175, 20);
             this.txtServer.TabIndex = 1;
+            this.toolTip.SetToolTip(this.txtServer, "Server or Instance name.");
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(300, 46);
+            this.txtPassword.Location = new System.Drawing.Point(294, 45);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(144, 20);
+            this.txtPassword.Size = new System.Drawing.Size(156, 20);
             this.txtPassword.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(244, 49);
+            this.label2.Location = new System.Drawing.Point(238, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 2;
@@ -82,15 +94,15 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(300, 20);
+            this.txtUsername.Location = new System.Drawing.Point(294, 19);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(144, 20);
+            this.txtUsername.Size = new System.Drawing.Size(156, 20);
             this.txtUsername.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(242, 23);
+            this.label3.Location = new System.Drawing.Point(236, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 4;
@@ -101,36 +113,27 @@
             this.chkTrustedConnection.AutoSize = true;
             this.chkTrustedConnection.Checked = true;
             this.chkTrustedConnection.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTrustedConnection.Location = new System.Drawing.Point(74, 49);
+            this.chkTrustedConnection.Location = new System.Drawing.Point(49, 45);
             this.chkTrustedConnection.Name = "chkTrustedConnection";
-            this.chkTrustedConnection.Size = new System.Drawing.Size(119, 17);
+            this.chkTrustedConnection.Size = new System.Drawing.Size(141, 17);
             this.chkTrustedConnection.TabIndex = 6;
-            this.chkTrustedConnection.Text = "Trusted Connection";
+            this.chkTrustedConnection.Text = "Use Trusted Connection";
             this.chkTrustedConnection.UseVisualStyleBackColor = true;
             this.chkTrustedConnection.CheckedChanged += new System.EventHandler(this.ChkTrustedConnectionCheckedChanged);
             // 
             // txtScriptLocation
             // 
-            this.txtScriptLocation.Location = new System.Drawing.Point(74, 84);
+            this.txtScriptLocation.Location = new System.Drawing.Point(18, 19);
             this.txtScriptLocation.Name = "txtScriptLocation";
-            this.txtScriptLocation.Size = new System.Drawing.Size(370, 20);
+            this.txtScriptLocation.Size = new System.Drawing.Size(413, 20);
             this.txtScriptLocation.TabIndex = 8;
             this.txtScriptLocation.TextChanged += new System.EventHandler(this.TxtScriptLocationTextChanged);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(33, 87);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Script:";
-            // 
             // btBrowseScriptLocation
             // 
-            this.btBrowseScriptLocation.Location = new System.Drawing.Point(451, 82);
+            this.btBrowseScriptLocation.Location = new System.Drawing.Point(438, 17);
             this.btBrowseScriptLocation.Name = "btBrowseScriptLocation";
-            this.btBrowseScriptLocation.Size = new System.Drawing.Size(61, 23);
+            this.btBrowseScriptLocation.Size = new System.Drawing.Size(59, 23);
             this.btBrowseScriptLocation.TabIndex = 9;
             this.btBrowseScriptLocation.Text = "Browse...";
             this.btBrowseScriptLocation.UseVisualStyleBackColor = true;
@@ -138,9 +141,9 @@
             // 
             // btBrowseOutputFolder
             // 
-            this.btBrowseOutputFolder.Location = new System.Drawing.Point(451, 114);
+            this.btBrowseOutputFolder.Location = new System.Drawing.Point(438, 16);
             this.btBrowseOutputFolder.Name = "btBrowseOutputFolder";
-            this.btBrowseOutputFolder.Size = new System.Drawing.Size(61, 23);
+            this.btBrowseOutputFolder.Size = new System.Drawing.Size(59, 23);
             this.btBrowseOutputFolder.TabIndex = 12;
             this.btBrowseOutputFolder.Text = "Browse...";
             this.btBrowseOutputFolder.UseVisualStyleBackColor = true;
@@ -148,24 +151,15 @@
             // 
             // txtOutputFolder
             // 
-            this.txtOutputFolder.Location = new System.Drawing.Point(74, 116);
+            this.txtOutputFolder.Location = new System.Drawing.Point(18, 19);
             this.txtOutputFolder.Name = "txtOutputFolder";
-            this.txtOutputFolder.Size = new System.Drawing.Size(370, 20);
+            this.txtOutputFolder.Size = new System.Drawing.Size(413, 20);
             this.txtOutputFolder.TabIndex = 11;
             this.txtOutputFolder.TextChanged += new System.EventHandler(this.TxtOutputFolderTextChanged);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 119);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Output To:";
-            // 
             // btExecute
             // 
-            this.btExecute.Location = new System.Drawing.Point(451, 181);
+            this.btExecute.Location = new System.Drawing.Point(453, 335);
             this.btExecute.Name = "btExecute";
             this.btExecute.Size = new System.Drawing.Size(61, 23);
             this.btExecute.TabIndex = 13;
@@ -175,15 +169,16 @@
             // 
             // txtDBs
             // 
-            this.txtDBs.Location = new System.Drawing.Point(74, 152);
+            this.txtDBs.Location = new System.Drawing.Point(88, 19);
             this.txtDBs.Name = "txtDBs";
-            this.txtDBs.Size = new System.Drawing.Size(370, 20);
+            this.txtDBs.Size = new System.Drawing.Size(409, 20);
             this.txtDBs.TabIndex = 15;
+            this.toolTip.SetToolTip(this.txtDBs, "Semi-colon separated list of databases to run DB specfici queries against.");
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1, 155);
+            this.label6.Location = new System.Drawing.Point(15, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 13);
             this.label6.TabIndex = 14;
@@ -194,39 +189,120 @@
             this.chkAutoFitExcelColumns.AutoSize = true;
             this.chkAutoFitExcelColumns.Checked = true;
             this.chkAutoFitExcelColumns.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoFitExcelColumns.Location = new System.Drawing.Point(74, 185);
+            this.chkAutoFitExcelColumns.Location = new System.Drawing.Point(18, 45);
             this.chkAutoFitExcelColumns.Name = "chkAutoFitExcelColumns";
             this.chkAutoFitExcelColumns.Size = new System.Drawing.Size(128, 17);
             this.chkAutoFitExcelColumns.TabIndex = 16;
             this.chkAutoFitExcelColumns.Text = "Autofit Excel Columns";
             this.chkAutoFitExcelColumns.UseVisualStyleBackColor = true;
             // 
+            // txtTimeout
+            // 
+            this.txtTimeout.Location = new System.Drawing.Point(162, 42);
+            this.txtTimeout.MaxLength = 5;
+            this.txtTimeout.Name = "txtTimeout";
+            this.txtTimeout.Size = new System.Drawing.Size(41, 20);
+            this.txtTimeout.TabIndex = 8;
+            this.txtTimeout.Text = "360";
+            this.txtTimeout.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip.SetToolTip(this.txtTimeout, "Server or Instance name.");
+            this.txtTimeout.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTimeout_KeyPress);
+            // 
+            // gbConnection
+            // 
+            this.gbConnection.Controls.Add(this.txtServer);
+            this.gbConnection.Controls.Add(this.label1);
+            this.gbConnection.Controls.Add(this.label2);
+            this.gbConnection.Controls.Add(this.txtPassword);
+            this.gbConnection.Controls.Add(this.label3);
+            this.gbConnection.Controls.Add(this.txtUsername);
+            this.gbConnection.Controls.Add(this.chkTrustedConnection);
+            this.gbConnection.Location = new System.Drawing.Point(15, 12);
+            this.gbConnection.Name = "gbConnection";
+            this.gbConnection.Size = new System.Drawing.Size(506, 105);
+            this.gbConnection.TabIndex = 17;
+            this.gbConnection.TabStop = false;
+            this.gbConnection.Text = "Connection Details:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(205, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(18, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "(s)";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTimeout
+            // 
+            this.lblTimeout.AutoSize = true;
+            this.lblTimeout.Location = new System.Drawing.Point(15, 45);
+            this.lblTimeout.Name = "lblTimeout";
+            this.lblTimeout.Size = new System.Drawing.Size(149, 13);
+            this.lblTimeout.TabIndex = 7;
+            this.lblTimeout.Text = "Long Running Query Timeout:";
+            // 
+            // gbScript
+            // 
+            this.gbScript.Controls.Add(this.txtScriptLocation);
+            this.gbScript.Controls.Add(this.btBrowseScriptLocation);
+            this.gbScript.Location = new System.Drawing.Point(15, 123);
+            this.gbScript.Name = "gbScript";
+            this.gbScript.Size = new System.Drawing.Size(506, 50);
+            this.gbScript.TabIndex = 18;
+            this.gbScript.TabStop = false;
+            this.gbScript.Text = "SQL Diagnostic Script:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtOutputFolder);
+            this.groupBox1.Controls.Add(this.btBrowseOutputFolder);
+            this.groupBox1.Controls.Add(this.chkAutoFitExcelColumns);
+            this.groupBox1.Location = new System.Drawing.Point(15, 255);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(506, 69);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Output Results To:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.txtDBs);
+            this.groupBox2.Controls.Add(this.txtTimeout);
+            this.groupBox2.Controls.Add(this.lblTimeout);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Location = new System.Drawing.Point(15, 179);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(506, 70);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "User Databases:";
+            // 
             // FrmSqlDiag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 231);
-            this.Controls.Add(this.chkAutoFitExcelColumns);
-            this.Controls.Add(this.txtDBs);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(537, 369);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbScript);
+            this.Controls.Add(this.gbConnection);
             this.Controls.Add(this.btExecute);
-            this.Controls.Add(this.btBrowseOutputFolder);
-            this.Controls.Add(this.txtOutputFolder);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.btBrowseScriptLocation);
-            this.Controls.Add(this.txtScriptLocation);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.chkTrustedConnection);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtServer);
-            this.Controls.Add(this.label1);
             this.Name = "FrmSqlDiag";
             this.Text = "SQL Diagnostic Runner";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSqlDiag_FormClosing);
+            this.Load += new System.EventHandler(this.FrmSqlDiag_Load);
+            this.gbConnection.ResumeLayout(false);
+            this.gbConnection.PerformLayout();
+            this.gbScript.ResumeLayout(false);
+            this.gbScript.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -240,15 +316,21 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox chkTrustedConnection;
         private System.Windows.Forms.TextBox txtScriptLocation;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btBrowseScriptLocation;
         private System.Windows.Forms.Button btBrowseOutputFolder;
         private System.Windows.Forms.TextBox txtOutputFolder;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btExecute;
         private System.Windows.Forms.TextBox txtDBs;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chkAutoFitExcelColumns;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.GroupBox gbConnection;
+        private System.Windows.Forms.TextBox txtTimeout;
+        private System.Windows.Forms.Label lblTimeout;
+        private System.Windows.Forms.GroupBox gbScript;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

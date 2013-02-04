@@ -83,18 +83,56 @@ namespace SQLDiagRunner
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                var databases = new List<string>(txtDBs.Text.Trim().Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries));
+                var databases = new List<string>(txtDBs.Text.Trim().Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 
                 var runner = new Runner();
                 runner.ExecuteQueries(txtServer.Text, txtUsername.Text, txtPassword.Text,
                                       txtScriptLocation.Text, txtOutputFolder.Text, databases,
-                                      chkTrustedConnection.Checked, chkAutoFitExcelColumns.Checked, 360);
+                                      chkTrustedConnection.Checked, chkAutoFitExcelColumns.Checked, Int32.Parse(txtTimeout.Text));
             }
             finally
             {
                 Cursor.Current = Cursors.Default;
-            }        
+            }
         }
 
+        private void txtTimeout_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == '\b');
+        }
+
+        private void FrmSqlDiag_Load(object sender, EventArgs e)
+        {
+            RestoreUserSettings();
+        }
+
+        private void FrmSqlDiag_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveUserSettings();
+        }
+
+        private void SaveUserSettings()
+        {
+            Properties.Settings.Default.ServerName = txtServer.Text;
+            Properties.Settings.Default.OutputFolder = txtOutputFolder.Text;
+            Properties.Settings.Default.AutoFit = chkAutoFitExcelColumns.Checked;
+            Properties.Settings.Default.Username = txtUsername.Text;
+            Properties.Settings.Default.ScriptPath = txtScriptLocation.Text;
+            Properties.Settings.Default.DatabaseList = txtDBs.Text;
+            Properties.Settings.Default.QueryTimeout = Int32.Parse(txtTimeout.Text ?? "360");
+
+            Properties.Settings.Default.Save();
+        }
+
+        private void RestoreUserSettings()
+        {
+            txtServer.Text = Properties.Settings.Default.ServerName;
+            txtOutputFolder.Text = Properties.Settings.Default.OutputFolder;
+            chkAutoFitExcelColumns.Checked = Properties.Settings.Default.AutoFit;
+            txtUsername.Text = Properties.Settings.Default.Username;
+            txtScriptLocation.Text = Properties.Settings.Default.ScriptPath;
+            txtDBs.Text = Properties.Settings.Default.DatabaseList;
+            txtTimeout.Text = Properties.Settings.Default.QueryTimeout.ToString();
+        }
     }
 }
