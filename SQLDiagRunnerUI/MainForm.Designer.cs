@@ -52,10 +52,13 @@
             this.gbScript = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbConnection.SuspendLayout();
             this.gbScript.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -118,6 +121,7 @@
             this.chkTrustedConnection.Size = new System.Drawing.Size(141, 17);
             this.chkTrustedConnection.TabIndex = 6;
             this.chkTrustedConnection.Text = "Use Trusted Connection";
+            this.toolTip.SetToolTip(this.chkTrustedConnection, "Connect using your logged on Windows credentials.");
             this.chkTrustedConnection.UseVisualStyleBackColor = true;
             this.chkTrustedConnection.CheckedChanged += new System.EventHandler(this.ChkTrustedConnectionCheckedChanged);
             // 
@@ -127,6 +131,8 @@
             this.txtScriptLocation.Name = "txtScriptLocation";
             this.txtScriptLocation.Size = new System.Drawing.Size(413, 20);
             this.txtScriptLocation.TabIndex = 8;
+            this.toolTip.SetToolTip(this.txtScriptLocation, "Location of Glenn Berry\'s SQL diagnostic script that targets your version of SQL " +
+        "Server.");
             this.txtScriptLocation.TextChanged += new System.EventHandler(this.TxtScriptLocationTextChanged);
             // 
             // btBrowseScriptLocation
@@ -155,11 +161,12 @@
             this.txtOutputFolder.Name = "txtOutputFolder";
             this.txtOutputFolder.Size = new System.Drawing.Size(413, 20);
             this.txtOutputFolder.TabIndex = 11;
+            this.toolTip.SetToolTip(this.txtOutputFolder, "Folder to Save Excel Results file to.");
             this.txtOutputFolder.TextChanged += new System.EventHandler(this.TxtOutputFolderTextChanged);
             // 
             // btExecute
             // 
-            this.btExecute.Location = new System.Drawing.Point(453, 335);
+            this.btExecute.Location = new System.Drawing.Point(453, 351);
             this.btExecute.Name = "btExecute";
             this.btExecute.Size = new System.Drawing.Size(61, 23);
             this.btExecute.TabIndex = 13;
@@ -173,7 +180,7 @@
             this.txtDBs.Name = "txtDBs";
             this.txtDBs.Size = new System.Drawing.Size(409, 20);
             this.txtDBs.TabIndex = 15;
-            this.toolTip.SetToolTip(this.txtDBs, "Semi-colon separated list of databases to run DB specfici queries against.");
+            this.toolTip.SetToolTip(this.txtDBs, "Semi-colon separated list of databases to run DB specific queries against.");
             // 
             // label6
             // 
@@ -194,6 +201,7 @@
             this.chkAutoFitExcelColumns.Size = new System.Drawing.Size(128, 17);
             this.chkAutoFitExcelColumns.TabIndex = 16;
             this.chkAutoFitExcelColumns.Text = "Autofit Excel Columns";
+            this.toolTip.SetToolTip(this.chkAutoFitExcelColumns, "Should Excel worksheet columns be auto-sized to fit contents.");
             this.chkAutoFitExcelColumns.UseVisualStyleBackColor = true;
             // 
             // txtTimeout
@@ -205,7 +213,7 @@
             this.txtTimeout.TabIndex = 8;
             this.txtTimeout.Text = "360";
             this.txtTimeout.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip.SetToolTip(this.txtTimeout, "Server or Instance name.");
+            this.toolTip.SetToolTip(this.txtTimeout, "Individual Query execution timeout in seconds.");
             this.txtTimeout.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTimeout_KeyPress);
             // 
             // gbConnection
@@ -217,7 +225,7 @@
             this.gbConnection.Controls.Add(this.label3);
             this.gbConnection.Controls.Add(this.txtUsername);
             this.gbConnection.Controls.Add(this.chkTrustedConnection);
-            this.gbConnection.Location = new System.Drawing.Point(15, 12);
+            this.gbConnection.Location = new System.Drawing.Point(15, 28);
             this.gbConnection.Name = "gbConnection";
             this.gbConnection.Size = new System.Drawing.Size(506, 105);
             this.gbConnection.TabIndex = 17;
@@ -247,7 +255,7 @@
             // 
             this.gbScript.Controls.Add(this.txtScriptLocation);
             this.gbScript.Controls.Add(this.btBrowseScriptLocation);
-            this.gbScript.Location = new System.Drawing.Point(15, 123);
+            this.gbScript.Location = new System.Drawing.Point(15, 139);
             this.gbScript.Name = "gbScript";
             this.gbScript.Size = new System.Drawing.Size(506, 50);
             this.gbScript.TabIndex = 18;
@@ -259,7 +267,7 @@
             this.groupBox1.Controls.Add(this.txtOutputFolder);
             this.groupBox1.Controls.Add(this.btBrowseOutputFolder);
             this.groupBox1.Controls.Add(this.chkAutoFitExcelColumns);
-            this.groupBox1.Location = new System.Drawing.Point(15, 255);
+            this.groupBox1.Location = new System.Drawing.Point(15, 271);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(506, 69);
             this.groupBox1.TabIndex = 19;
@@ -273,23 +281,41 @@
             this.groupBox2.Controls.Add(this.txtTimeout);
             this.groupBox2.Controls.Add(this.lblTimeout);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(15, 179);
+            this.groupBox2.Location = new System.Drawing.Point(15, 195);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(506, 70);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "User Databases:";
             // 
+            // menuStrip
+            // 
+            this.menuStrip.Dock = System.Windows.Forms.DockStyle.Right;
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(439, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(98, 391);
+            this.menuStrip.TabIndex = 21;
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(85, 19);
+            this.aboutToolStripMenuItem.Text = "About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // FrmSqlDiag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 369);
+            this.ClientSize = new System.Drawing.Size(537, 391);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbScript);
             this.Controls.Add(this.gbConnection);
             this.Controls.Add(this.btExecute);
+            this.Controls.Add(this.menuStrip);
             this.Name = "FrmSqlDiag";
             this.Text = "SQL Diagnostic Runner";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSqlDiag_FormClosing);
@@ -302,7 +328,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -331,6 +360,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

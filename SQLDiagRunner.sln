@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLDiagUI", "SQLDiagRunnerUI\SQLDiagUI.csproj", "{CAB950A6-77B7-4519-A867-DB00CA0502FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{981B7ED9-3D18-4912-BB71-C0E1AD695D55}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		SQLDiagRunner.vsmdi = SQLDiagRunner.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLDiagRunner", "SQLDiagRunner\SQLDiagRunner.csproj", "{90D2AD1D-981E-4A21-AB0B-425D523FD2B6}"
 EndProject
@@ -13,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{D4A7F871-5
 		Libs\CommandLine.dll = Libs\CommandLine.dll
 		Libs\EPPlus.dll = Libs\EPPlus.dll
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{252C8034-8874-4B60-9C34-E82899DF723C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtensionsTests", "Tests\StringExtensionsTests\StringExtensionsTests.csproj", "{7DB657A2-73F2-45ED-B944-7F431B70D6B7}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -61,8 +70,21 @@ Global
 		{28BC6F2F-BD47-429E-AC9F-F5D10BAB055D}.Release|Mixed Platforms.Build.0 = Release|x86
 		{28BC6F2F-BD47-429E-AC9F-F5D10BAB055D}.Release|x86.ActiveCfg = Release|x86
 		{28BC6F2F-BD47-429E-AC9F-F5D10BAB055D}.Release|x86.Build.0 = Release|x86
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7DB657A2-73F2-45ED-B944-7F431B70D6B7} = {252C8034-8874-4B60-9C34-E82899DF723C}
 	EndGlobalSection
 EndGlobal

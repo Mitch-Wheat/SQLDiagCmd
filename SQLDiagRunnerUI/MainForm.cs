@@ -33,12 +33,14 @@ namespace SQLDiagUI
 
         private void BtBrowseScriptLocationClick(object sender, EventArgs e)
         {
-            var ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog
+                        {
 
-            ofd.Title = "Select SQL Script File";
-            ofd.InitialDirectory = @".";
-            ofd.Filter = "Text files (*.txt)|*.txt|SQL files (*.sql)|*.sql";
-            ofd.FilterIndex = 2;
+                            Title = "Select SQL Script File",
+                            InitialDirectory = @".",
+                            Filter = "Text files (*.txt)|*.txt|SQL files (*.sql)|*.sql",
+                            FilterIndex = 2
+                        };
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -136,6 +138,12 @@ namespace SQLDiagUI
             txtScriptLocation.Text = Properties.Settings.Default.ScriptPath;
             txtDBs.Text = Properties.Settings.Default.DatabaseList;
             txtTimeout.Text = Properties.Settings.Default.QueryTimeout.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmAbout = new AboutBox();
+            frmAbout.ShowDialog();
         }
     }
 }

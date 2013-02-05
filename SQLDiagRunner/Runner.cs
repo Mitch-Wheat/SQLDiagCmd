@@ -87,6 +87,8 @@ namespace SQLDiagRunner
                     {
                         ExcelRangeBase range = ws.Cells["A2"].LoadFromDataTable(datatable, true);
 
+                        ws.Row(2).Style.Font.Bold = true;
+ 
                         // find datetime columns and set formatting
                         int numcols = datatable.Columns.Count;
                         for (int i = 0; i < numcols; i++)
@@ -126,7 +128,7 @@ namespace SQLDiagRunner
 
             string worksheetNameSanitised = SanitiseWorkSheetName(worksheetName);
 
-            // Check if name already exists. Possible due to ridiculous 31 char limit for worksheet names...
+            // Check if name already exists: 31 char limit for worksheet names!
             while (_dictWorksheet.Contains(worksheetNameSanitised))
             {
                 worksheetNameSanitised = worksheetNameSanitised.RandomiseLastNChars(3);
@@ -139,8 +141,7 @@ namespace SQLDiagRunner
 
         private string SanitiseWorkSheetName(string wsname)
         {
-            string s = wsname.Replace(":", "").Replace("\\", "").Replace("/", "")
-                .Replace("*", "").Replace("[", "").Replace("]", "");
+            var s = wsname.RemoveInvalidExcelChars();
 
             return s.Substring(0, Math.Min(31, s.Length));
         }

@@ -28,5 +28,17 @@ namespace SQLDiagRunner
             return sb.ToString();
         }
 
+        public static string Replace(this string s, char[] separators, string newVal)
+        {
+            string[] temp = s.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            return String.Join(newVal, temp);
+        }
+
+        public static string RemoveInvalidExcelChars(this string s)
+        {
+            var invalidExcelChars = new [] {':', '\\', '/', '?', '*', '[', ']'};
+
+            return s.Replace(invalidExcelChars, "");
+        }
     }
 }

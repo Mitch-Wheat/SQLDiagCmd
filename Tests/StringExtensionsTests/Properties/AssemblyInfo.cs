@@ -5,14 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SQLDiagRunner")]
-[assembly: AssemblyDescription("This is a standalone, no installation required, runner for Glenn Berry's SQL Server Diagnostic Scripts." + 
-                               "\r\n\r\nThere is also a command line version." +
-                               "\r\n\r\nIt uses EPPlus and the Command Line Parser Library.")]
+[assembly: AssemblyTitle("StringExtensionsTests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SQLDiagRunner")]
-[assembly: AssemblyCopyright("Copyright © Mitch Wheat 2013")]
+[assembly: AssemblyProduct("StringExtensionsTests")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -22,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7e5c184a-a36c-4504-a130-db2fd029858d")]
+[assembly: Guid("b284940e-1c9b-4cb3-87d7-aa9f5676f73f")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,6 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
