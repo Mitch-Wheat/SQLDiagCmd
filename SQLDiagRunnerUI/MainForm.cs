@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SQLDiagRunner
+using SQLDiagRunner;
+
+namespace SQLDiagUI
 {
     public partial class FrmSqlDiag : Form
     {
@@ -132,7 +135,7 @@ namespace SQLDiagRunner
             txtUsername.Text = Properties.Settings.Default.Username;
             txtScriptLocation.Text = Properties.Settings.Default.ScriptPath;
             txtDBs.Text = Properties.Settings.Default.DatabaseList;
-            txtTimeout.Text = Properties.Settings.Default.QueryTimeout.ToString();
+            txtTimeout.Text = Properties.Settings.Default.QueryTimeout.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

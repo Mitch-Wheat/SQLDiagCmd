@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace SQLDiagRunner
+namespace SQLDiagUI
 {
     static class Program
     {
@@ -14,18 +14,24 @@ namespace SQLDiagRunner
         [STAThread]
         static void Main()
         {
-            SetEmbeddedAssembliesResolver();
+            SuscribeEmbeddedAssembliesResolver();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            DelayLoad();
+        }
+
+        private static void DelayLoad()
+        {
             Application.Run(new FrmSqlDiag());
         }
 
-        static void SetEmbeddedAssembliesResolver()
+        static void SuscribeEmbeddedAssembliesResolver()
         {
             AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
             {
-                String resourceName = "SQLDiagCmd." + new AssemblyName(args.Name).Name + ".dll";
+                String resourceName = "SQLDiagUI." + new AssemblyName(args.Name).Name + ".dll";
                 using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
                 {
                     var assemblyData = new Byte[stream.Length];

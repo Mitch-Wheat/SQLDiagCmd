@@ -1,4 +1,4 @@
-﻿namespace SQLDiagRunner
+﻿namespace SQLDiagUI
 {
     partial class FrmSqlDiag
     {
