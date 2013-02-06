@@ -65,9 +65,15 @@ namespace SQLDiagUI
 
         private void SetExecuteButtonEnabledState()
         {
-            btExecute.Enabled = File.Exists(txtScriptLocation.Text) &&
-                                Directory.Exists(txtOutputFolder.Text) &&
-                                IsSecurityInfoPresent();
+            btExecute.Enabled = IsFileInfoPresent() && IsSecurityInfoPresent();
+        }
+
+        private bool IsFileInfoPresent()
+        {
+            return (!string.IsNullOrEmpty(txtOutputFolder.Text) &&
+                    !string.IsNullOrEmpty(txtScriptLocation.Text) &&
+                    File.Exists(txtScriptLocation.Text) &&
+                    (Directory.Exists(txtOutputFolder.Text) || File.Exists(txtOutputFolder.Text)));
         }
 
         private bool IsSecurityInfoPresent()
@@ -87,6 +93,18 @@ namespace SQLDiagUI
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
+
+                if (File.Exists(txtOutputFolder.Text))
+                {
+                    string msg = string.Format("Output File Exists:  {0}\r\n\r\nDo you want to overwrite it?", txtOutputFolder.Text);
+                    DialogResult dr = MessageBox.Show(msg, "File Exists", MessageBoxButtons.YesNo, 
+                                                      MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (dr == DialogResult.No)
+                    {
+                        txtOutputFolder.Focus(); 
+                        return;
+                    }
+                }
 
                 var databases = new List<string>(txtDBs.Text.Trim().Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 

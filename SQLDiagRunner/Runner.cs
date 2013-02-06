@@ -33,7 +33,8 @@ namespace SQLDiagRunner
             var parser = new QueryFileParser(scriptLocation);
             var queries = parser.Load();
 
-            string outputFilepath = Path.Combine(outputFolder, dateString + servername + ".xlsx");
+            string outputFilepath = GetOutputFilepath(outputFolder, servername, dateString);
+
             using (var fs = new FileStream(outputFilepath, FileMode.Create))
             {
                 using (var pck = new ExcelPackage(fs))
@@ -59,6 +60,15 @@ namespace SQLDiagRunner
                     pck.Save();
                 }
             }
+        }
+
+        private static string GetOutputFilepath(string outputFolder, string servername, string dateString)
+        {
+            string ret = Directory.Exists(outputFolder)
+                             ? Path.Combine(outputFolder, dateString + servername + ".xlsx")
+                             : outputFolder;
+
+            return ret;
         }
 
         private void ExecuteQueriesAndSaveToExcel

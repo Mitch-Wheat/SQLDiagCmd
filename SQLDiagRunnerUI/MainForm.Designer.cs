@@ -161,7 +161,8 @@
             this.txtOutputFolder.Name = "txtOutputFolder";
             this.txtOutputFolder.Size = new System.Drawing.Size(413, 20);
             this.txtOutputFolder.TabIndex = 11;
-            this.toolTip.SetToolTip(this.txtOutputFolder, "Folder to Save Excel Results file to.");
+            this.toolTip.SetToolTip(this.txtOutputFolder, "Folder to Save Excel Results file to.  If a folder is specified, the filename wil" +
+        "l be generated automatically, consisting of date, time and server name.");
             this.txtOutputFolder.TextChanged += new System.EventHandler(this.TxtOutputFolderTextChanged);
             // 
             // btExecute
@@ -293,15 +294,15 @@
             this.menuStrip.Dock = System.Windows.Forms.DockStyle.Right;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(439, 0);
+            this.menuStrip.Location = new System.Drawing.Point(470, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(98, 391);
+            this.menuStrip.Size = new System.Drawing.Size(67, 391);
             this.menuStrip.TabIndex = 21;
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(85, 19);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(54, 19);
             this.aboutToolStripMenuItem.Text = "About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
