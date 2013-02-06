@@ -6,11 +6,13 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SQLDiagRunner")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This is a standalone, no installation required, runner for Glenn Berry's SQL Server Diagnostic Scripts." + 
+                               "\r\n\r\nThere is also a command line version." +
+                               "\r\n\r\nIt uses EPPlus and the Command Line Parser Library.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SQLDiagRunner")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © Mitch Wheat 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0102501c-61e2-42fa-a48e-28709e33c424")]
+[assembly: Guid("7e5c184a-a36c-4504-a130-db2fd029858d")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,5 +33,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.0")]
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.1.13038")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

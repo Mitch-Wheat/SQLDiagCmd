@@ -66,13 +66,13 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Server:";
+            this.label1.Text = "SQL Server:";
             // 
             // txtServer
             // 
-            this.txtServer.Location = new System.Drawing.Point(49, 19);
+            this.txtServer.Location = new System.Drawing.Point(74, 19);
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(175, 20);
             this.txtServer.TabIndex = 1;
@@ -80,7 +80,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(294, 45);
+            this.txtPassword.Location = new System.Drawing.Point(332, 45);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(156, 20);
@@ -89,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(238, 48);
+            this.label2.Location = new System.Drawing.Point(276, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 2;
@@ -97,7 +97,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(294, 19);
+            this.txtUsername.Location = new System.Drawing.Point(332, 19);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(156, 20);
             this.txtUsername.TabIndex = 5;
@@ -105,7 +105,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(236, 22);
+            this.label3.Location = new System.Drawing.Point(274, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 4;
@@ -116,7 +116,7 @@
             this.chkTrustedConnection.AutoSize = true;
             this.chkTrustedConnection.Checked = true;
             this.chkTrustedConnection.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTrustedConnection.Location = new System.Drawing.Point(49, 45);
+            this.chkTrustedConnection.Location = new System.Drawing.Point(75, 45);
             this.chkTrustedConnection.Name = "chkTrustedConnection";
             this.chkTrustedConnection.Size = new System.Drawing.Size(141, 17);
             this.chkTrustedConnection.TabIndex = 6;

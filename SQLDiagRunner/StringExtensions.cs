@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 
 
@@ -39,6 +40,13 @@ namespace SQLDiagRunner
             var invalidExcelChars = new [] {':', '\\', '/', '?', '*', '[', ']'};
 
             return s.Replace(invalidExcelChars, "");
+        }
+
+        public static string ReplaceInvalidFilenameChars(this string s, string newVal)
+        {
+            var invalidFilenameChars = Path.GetInvalidFileNameChars();
+
+            return s.Replace(invalidFilenameChars, newVal);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace SQLDiagRunner
                         foreach (var db in databases)
                         {
                             connectionString = GetConnectionStringTemplate(servername, db, username, password, useTrusted);
-                            ExecuteQueriesAndSaveToExcel(pck, connectionString, dbQueries, db,
+                            ExecuteQueriesAndSaveToExcel(pck, connectionString, dbQueries, db.Trim(),
                                                          databaseNo.ToString(CultureInfo.InvariantCulture), 
                                                          autoFitColumns, queryTimeoutSeconds);
                             databaseNo++;
@@ -65,7 +65,7 @@ namespace SQLDiagRunner
         private static string GetOutputFilepath(string outputFolder, string servername, string dateString)
         {
             string ret = Directory.Exists(outputFolder)
-                             ? Path.Combine(outputFolder, dateString + servername + ".xlsx")
+                             ? Path.Combine(outputFolder, dateString + servername.ReplaceInvalidFilenameChars("_") + ".xlsx")
                              : outputFolder;
 
             return ret;

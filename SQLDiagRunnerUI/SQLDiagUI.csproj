@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SQLDiagRunner\Properties\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,7 +66,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>

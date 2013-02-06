@@ -33,9 +33,9 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.labelCopyright = new System.Windows.Forms.Label();
-            this.labelCompany = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.labelCompany = new System.Windows.Forms.Label();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -45,10 +45,10 @@
             this.tableLayoutPanel.ColumnCount = 1;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.Controls.Add(this.labelProductName, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.labelVersion, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.labelVersion, 0, 2);
             this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 0, 5);
             this.tableLayoutPanel.Controls.Add(this.okButton, 0, 8);
-            this.tableLayoutPanel.Controls.Add(this.labelCopyright, 0, 2);
+            this.tableLayoutPanel.Controls.Add(this.labelCopyright, 0, 1);
             this.tableLayoutPanel.Controls.Add(this.linkLabel1, 0, 7);
             this.tableLayoutPanel.Controls.Add(this.linkLabel2, 0, 6);
             this.tableLayoutPanel.Controls.Add(this.labelCompany, 0, 3);
@@ -85,7 +85,7 @@
             // labelVersion
             // 
             this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelVersion.Location = new System.Drawing.Point(6, 19);
+            this.labelVersion.Location = new System.Drawing.Point(6, 38);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelVersion.Name = "labelVersion";
@@ -120,22 +120,14 @@
             // 
             // labelCopyright
             // 
-            this.labelCopyright.AutoSize = true;
             this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Location = new System.Drawing.Point(3, 38);
+            this.labelCopyright.Location = new System.Drawing.Point(6, 19);
+            this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(411, 19);
+            this.labelCopyright.Size = new System.Drawing.Size(408, 19);
             this.labelCopyright.TabIndex = 25;
             this.labelCopyright.Text = "Copyright (c) Mitch Wheat 2012-2013";
-            // 
-            // labelCompany
-            // 
-            this.labelCompany.AutoSize = true;
-            this.labelCompany.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCompany.Location = new System.Drawing.Point(3, 57);
-            this.labelCompany.Name = "labelCompany";
-            this.labelCompany.Size = new System.Drawing.Size(411, 19);
-            this.labelCompany.TabIndex = 26;
+            this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // linkLabel1
             // 
@@ -158,6 +150,15 @@
             this.linkLabel2.TabIndex = 28;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "http://commandline.codeplex.com/";
+            // 
+            // labelCompany
+            // 
+            this.labelCompany.AutoSize = true;
+            this.labelCompany.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelCompany.Location = new System.Drawing.Point(3, 57);
+            this.labelCompany.Name = "labelCompany";
+            this.labelCompany.Size = new System.Drawing.Size(411, 19);
+            this.labelCompany.TabIndex = 26;
             // 
             // linkLabel3
             // 
