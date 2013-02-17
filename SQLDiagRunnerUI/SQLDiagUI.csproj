@@ -101,11 +101,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\Libs\CommandLine.dll">
-      <Link>CommandLine.dll</Link>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="..\Libs\EPPlus.dll">
       <Link>EPPlus.dll</Link>
     </EmbeddedResource>

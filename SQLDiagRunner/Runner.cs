@@ -165,15 +165,16 @@ namespace SQLDiagRunner
             bool trusted
         )
         {
-            const string trustedConnectionStringTemplate = "server={0};database={1};trusted_Connection=True";
-            const string sqlLoginConnectionStringTemplate = "server={0};database={1};username={2};password={3}";
+            const string applicationName = "SQL Server Diagnostic Script Runner";
+            const string trustedConnectionStringTemplate = "server={0};database={1};Trusted_Connection=True;Application Name={2}";
+            const string sqlLoginConnectionStringTemplate = "server={0};database={1};username={2};password={3};Application Name={4}";
 
             if (trusted)
             {
-                return string.Format(trustedConnectionStringTemplate, servername, database);
+                return string.Format(trustedConnectionStringTemplate, servername, database, applicationName);
             }
 
-            return string.Format(sqlLoginConnectionStringTemplate, servername, database, username, password);
+            return string.Format(sqlLoginConnectionStringTemplate, servername, database, username, password, applicationName);
 
         }
     }

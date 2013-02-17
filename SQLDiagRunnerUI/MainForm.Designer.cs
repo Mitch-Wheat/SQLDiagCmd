@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSqlDiag));
             this.label1 = new System.Windows.Forms.Label();
             this.txtServer = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -75,7 +76,7 @@
             this.txtServer.Location = new System.Drawing.Point(74, 19);
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(175, 20);
-            this.txtServer.TabIndex = 1;
+            this.txtServer.TabIndex = 0;
             this.toolTip.SetToolTip(this.txtServer, "Server or Instance name.");
             // 
             // txtPassword
@@ -100,7 +101,7 @@
             this.txtUsername.Location = new System.Drawing.Point(332, 19);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(156, 20);
-            this.txtUsername.TabIndex = 5;
+            this.txtUsername.TabIndex = 2;
             // 
             // label3
             // 
@@ -119,7 +120,7 @@
             this.chkTrustedConnection.Location = new System.Drawing.Point(75, 45);
             this.chkTrustedConnection.Name = "chkTrustedConnection";
             this.chkTrustedConnection.Size = new System.Drawing.Size(141, 17);
-            this.chkTrustedConnection.TabIndex = 6;
+            this.chkTrustedConnection.TabIndex = 1;
             this.chkTrustedConnection.Text = "Use Trusted Connection";
             this.toolTip.SetToolTip(this.chkTrustedConnection, "Connect using your logged on Windows credentials.");
             this.chkTrustedConnection.UseVisualStyleBackColor = true;
@@ -130,7 +131,7 @@
             this.txtScriptLocation.Location = new System.Drawing.Point(18, 19);
             this.txtScriptLocation.Name = "txtScriptLocation";
             this.txtScriptLocation.Size = new System.Drawing.Size(413, 20);
-            this.txtScriptLocation.TabIndex = 8;
+            this.txtScriptLocation.TabIndex = 0;
             this.toolTip.SetToolTip(this.txtScriptLocation, "Location of Glenn Berry\'s SQL diagnostic script that targets your version of SQL " +
         "Server.");
             this.txtScriptLocation.TextChanged += new System.EventHandler(this.TxtScriptLocationTextChanged);
@@ -140,7 +141,7 @@
             this.btBrowseScriptLocation.Location = new System.Drawing.Point(438, 17);
             this.btBrowseScriptLocation.Name = "btBrowseScriptLocation";
             this.btBrowseScriptLocation.Size = new System.Drawing.Size(59, 23);
-            this.btBrowseScriptLocation.TabIndex = 9;
+            this.btBrowseScriptLocation.TabIndex = 1;
             this.btBrowseScriptLocation.Text = "Browse...";
             this.btBrowseScriptLocation.UseVisualStyleBackColor = true;
             this.btBrowseScriptLocation.Click += new System.EventHandler(this.BtBrowseScriptLocationClick);
@@ -150,7 +151,7 @@
             this.btBrowseOutputFolder.Location = new System.Drawing.Point(438, 16);
             this.btBrowseOutputFolder.Name = "btBrowseOutputFolder";
             this.btBrowseOutputFolder.Size = new System.Drawing.Size(59, 23);
-            this.btBrowseOutputFolder.TabIndex = 12;
+            this.btBrowseOutputFolder.TabIndex = 1;
             this.btBrowseOutputFolder.Text = "Browse...";
             this.btBrowseOutputFolder.UseVisualStyleBackColor = true;
             this.btBrowseOutputFolder.Click += new System.EventHandler(this.BtBrowseOutputFolderClick);
@@ -160,33 +161,33 @@
             this.txtOutputFolder.Location = new System.Drawing.Point(18, 19);
             this.txtOutputFolder.Name = "txtOutputFolder";
             this.txtOutputFolder.Size = new System.Drawing.Size(413, 20);
-            this.txtOutputFolder.TabIndex = 11;
+            this.txtOutputFolder.TabIndex = 0;
             this.toolTip.SetToolTip(this.txtOutputFolder, "Folder to Save Excel Results file to.  If a folder is specified, the filename wil" +
         "l be generated automatically, consisting of date, time and server name.");
             this.txtOutputFolder.TextChanged += new System.EventHandler(this.TxtOutputFolderTextChanged);
             // 
             // btExecute
             // 
-            this.btExecute.Location = new System.Drawing.Point(453, 351);
+            this.btExecute.Location = new System.Drawing.Point(453, 327);
             this.btExecute.Name = "btExecute";
             this.btExecute.Size = new System.Drawing.Size(61, 23);
-            this.btExecute.TabIndex = 13;
+            this.btExecute.TabIndex = 0;
             this.btExecute.Text = "Execute...";
             this.btExecute.UseVisualStyleBackColor = true;
             this.btExecute.Click += new System.EventHandler(this.BtExecuteClick);
             // 
             // txtDBs
             // 
-            this.txtDBs.Location = new System.Drawing.Point(88, 19);
+            this.txtDBs.Location = new System.Drawing.Point(80, 19);
             this.txtDBs.Name = "txtDBs";
-            this.txtDBs.Size = new System.Drawing.Size(409, 20);
-            this.txtDBs.TabIndex = 15;
+            this.txtDBs.Size = new System.Drawing.Size(417, 20);
+            this.txtDBs.TabIndex = 0;
             this.toolTip.SetToolTip(this.txtDBs, "Semi-colon separated list of databases to run DB specific queries against.");
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 22);
+            this.label6.Location = new System.Drawing.Point(7, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 13);
             this.label6.TabIndex = 14;
@@ -200,18 +201,18 @@
             this.chkAutoFitExcelColumns.Location = new System.Drawing.Point(18, 45);
             this.chkAutoFitExcelColumns.Name = "chkAutoFitExcelColumns";
             this.chkAutoFitExcelColumns.Size = new System.Drawing.Size(128, 17);
-            this.chkAutoFitExcelColumns.TabIndex = 16;
+            this.chkAutoFitExcelColumns.TabIndex = 2;
             this.chkAutoFitExcelColumns.Text = "Autofit Excel Columns";
             this.toolTip.SetToolTip(this.chkAutoFitExcelColumns, "Should Excel worksheet columns be auto-sized to fit contents.");
             this.chkAutoFitExcelColumns.UseVisualStyleBackColor = true;
             // 
             // txtTimeout
             // 
-            this.txtTimeout.Location = new System.Drawing.Point(162, 42);
+            this.txtTimeout.Location = new System.Drawing.Point(155, 42);
             this.txtTimeout.MaxLength = 5;
             this.txtTimeout.Name = "txtTimeout";
             this.txtTimeout.Size = new System.Drawing.Size(41, 20);
-            this.txtTimeout.TabIndex = 8;
+            this.txtTimeout.TabIndex = 1;
             this.txtTimeout.Text = "360";
             this.txtTimeout.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip.SetToolTip(this.txtTimeout, "Individual Query execution timeout in seconds.");
@@ -226,17 +227,17 @@
             this.gbConnection.Controls.Add(this.label3);
             this.gbConnection.Controls.Add(this.txtUsername);
             this.gbConnection.Controls.Add(this.chkTrustedConnection);
-            this.gbConnection.Location = new System.Drawing.Point(15, 28);
+            this.gbConnection.Location = new System.Drawing.Point(15, 25);
             this.gbConnection.Name = "gbConnection";
-            this.gbConnection.Size = new System.Drawing.Size(506, 105);
-            this.gbConnection.TabIndex = 17;
+            this.gbConnection.Size = new System.Drawing.Size(506, 84);
+            this.gbConnection.TabIndex = 1;
             this.gbConnection.TabStop = false;
             this.gbConnection.Text = "Connection Details:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(205, 45);
+            this.label4.Location = new System.Drawing.Point(198, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(18, 13);
             this.label4.TabIndex = 9;
@@ -246,7 +247,7 @@
             // lblTimeout
             // 
             this.lblTimeout.AutoSize = true;
-            this.lblTimeout.Location = new System.Drawing.Point(15, 45);
+            this.lblTimeout.Location = new System.Drawing.Point(8, 45);
             this.lblTimeout.Name = "lblTimeout";
             this.lblTimeout.Size = new System.Drawing.Size(149, 13);
             this.lblTimeout.TabIndex = 7;
@@ -256,10 +257,10 @@
             // 
             this.gbScript.Controls.Add(this.txtScriptLocation);
             this.gbScript.Controls.Add(this.btBrowseScriptLocation);
-            this.gbScript.Location = new System.Drawing.Point(15, 139);
+            this.gbScript.Location = new System.Drawing.Point(15, 114);
             this.gbScript.Name = "gbScript";
             this.gbScript.Size = new System.Drawing.Size(506, 50);
-            this.gbScript.TabIndex = 18;
+            this.gbScript.TabIndex = 2;
             this.gbScript.TabStop = false;
             this.gbScript.Text = "SQL Diagnostic Script:";
             // 
@@ -268,10 +269,10 @@
             this.groupBox1.Controls.Add(this.txtOutputFolder);
             this.groupBox1.Controls.Add(this.btBrowseOutputFolder);
             this.groupBox1.Controls.Add(this.chkAutoFitExcelColumns);
-            this.groupBox1.Location = new System.Drawing.Point(15, 271);
+            this.groupBox1.Location = new System.Drawing.Point(15, 248);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(506, 69);
-            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Output Results To:";
             // 
@@ -282,43 +283,48 @@
             this.groupBox2.Controls.Add(this.txtTimeout);
             this.groupBox2.Controls.Add(this.lblTimeout);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(15, 195);
+            this.groupBox2.Location = new System.Drawing.Point(15, 171);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(506, 70);
-            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "User Databases:";
             // 
             // menuStrip
             // 
+            this.menuStrip.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip.Dock = System.Windows.Forms.DockStyle.Right;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(470, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(67, 391);
+            this.menuStrip.Size = new System.Drawing.Size(67, 361);
             this.menuStrip.TabIndex = 21;
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(54, 19);
-            this.aboutToolStripMenuItem.Text = "About...";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(85, 19);
+            this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // FrmSqlDiag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 391);
+            this.ClientSize = new System.Drawing.Size(537, 361);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbScript);
             this.Controls.Add(this.gbConnection);
             this.Controls.Add(this.btExecute);
             this.Controls.Add(this.menuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmSqlDiag";
-            this.Text = "SQL Diagnostic Runner";
+            this.Text = "SQL Server Diagnostic Script Runner";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSqlDiag_FormClosing);
             this.Load += new System.EventHandler(this.FrmSqlDiag_Load);
             this.gbConnection.ResumeLayout(false);
