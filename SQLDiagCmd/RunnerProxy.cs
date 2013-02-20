@@ -18,8 +18,8 @@ namespace SQLDiagCmd
         {
             #region Standard Option Attribute
 
-            [Option("S", "servername", Required = true, HelpText = "Server name or instance to run queries against.")]
-            public string ServerName { get; set; }
+            //[Option("S", "servername", Required = true, HelpText = "Server name or instance to run queries against.")]
+            //public string ServerName { get; set; }
 
             [Option("i", "inputfile", Required = true, HelpText = "Query diagnostic file to run.")]
             public string InputFile { get; set; }
@@ -46,8 +46,13 @@ namespace SQLDiagCmd
 
             #region Specialized Option Attribute
 
+            [OptionList("d", "databases", Separator = ';', HelpText = "Semicolon separated list of Server names or instances to run queries against." +
+                " Separate each server/instance name with a semicolon." + " Do not include spaces between server names and semicolon.")]
+            [DefaultValue(null)]
+            public IList<string> Servers { get; set; }
+
             [OptionList("d", "databases", Separator = ';', HelpText = "Semicolon separated list of specific databases to examine." +
-                " Separate each database with a semicolon." + " Do not include spaces between databases and semicolon.")]
+    " Separate each database with a semicolon." + " Do not include spaces between databases and semicolon.")]
             [DefaultValue(null)]
             public IList<string> SpecificDatabases { get; set; }
 
@@ -140,7 +145,7 @@ namespace SQLDiagCmd
                 Environment.Exit(1);
 
             var runner = new Runner();
-            runner.ExecuteQueries(options.ServerName, options.Username, options.Password,
+            runner.ExecuteQueries(options.Servers, options.Username, options.Password,
                        options.InputFile, options.OutputFolder, options.SpecificDatabases,
                        options.UseTrusted, options.AutoFitColumns, options.QueryTimeout);
         }

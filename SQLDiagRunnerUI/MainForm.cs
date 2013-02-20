@@ -107,9 +107,10 @@ namespace SQLDiagUI
                 }
 
                 var databases = new List<string>(txtDBs.Text.Trim().Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+                var servers = new List<string>(txtServer.Text.Trim().Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 
                 var runner = new Runner();
-                runner.ExecuteQueries(txtServer.Text, txtUsername.Text, txtPassword.Text,
+                runner.ExecuteQueries(servers, txtUsername.Text, txtPassword.Text,
                                       txtScriptLocation.Text, txtOutputFolder.Text, databases,
                                       chkTrustedConnection.Checked, chkAutoFitExcelColumns.Checked, Int32.Parse(txtTimeout.Text));
             }

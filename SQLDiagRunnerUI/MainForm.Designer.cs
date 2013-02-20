@@ -77,7 +77,7 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(175, 20);
             this.txtServer.TabIndex = 0;
-            this.toolTip.SetToolTip(this.txtServer, "Server or Instance name.");
+            this.toolTip.SetToolTip(this.txtServer, "Server or Instance name (semicolon separated list).");
             // 
             // txtPassword
             // 
@@ -304,7 +304,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(85, 19);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(54, 19);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 

@@ -15,7 +15,7 @@ namespace SQLDiagRunner
 
         public void ExecuteQueries
         (
-            string servername,
+            IList<string> servers,
             string username,
             string password,
             string scriptLocation,
@@ -26,38 +26,44 @@ namespace SQLDiagRunner
             int queryTimeoutSeconds
         )
         {
-            _dictWorksheet.Clear();
-
-            string dateString = DateTime.Now.ToString("yyyyMMdd_hhmmss_");
-
             var parser = new QueryFileParser(scriptLocation);
             var queries = parser.Load();
+            var serverQueries = queries.Where(q => q.ServerScope).ToList();
+            var dbQueries = queries.Where(q => !q.ServerScope).ToList();
 
-            string outputFilepath = GetOutputFilepath(outputFolder, servername, dateString);
-
-            using (var fs = new FileStream(outputFilepath, FileMode.Create))
+            foreach (var servername in servers)
             {
-                using (var pck = new ExcelPackage(fs))
+                string dateString = DateTime.Now.ToString("yyyyMMdd_hhmmss_");
+                _dictWorksheet.Clear();
+
+                string outputFilepath = GetOutputFilepath(outputFolder, servername, dateString);
+
+                using (var fs = new FileStream(outputFilepath, FileMode.Create))
                 {
-                    string connectionString = GetConnectionStringTemplate(servername, "master", username, password, useTrusted);
-                    var serverQueries = queries.Where(q => q.ServerScope).ToList();
-                    ExecuteQueriesAndSaveToExcel(pck, connectionString, serverQueries, "", "", autoFitColumns, queryTimeoutSeconds);
-
-                    if (databases.Count > 0)
+                    using (var pck = new ExcelPackage(fs))
                     {
-                        int databaseNo = 1;
-                        var dbQueries = queries.Where(q => !q.ServerScope).ToList();
-                        foreach (var db in databases)
-                        {
-                            connectionString = GetConnectionStringTemplate(servername, db, username, password, useTrusted);
-                            ExecuteQueriesAndSaveToExcel(pck, connectionString, dbQueries, db.Trim(),
-                                                         databaseNo.ToString(CultureInfo.InvariantCulture), 
-                                                         autoFitColumns, queryTimeoutSeconds);
-                            databaseNo++;
-                        }
-                    }
+                        string connectionString = GetConnectionStringTemplate(servername, "master", username, password,
+                                                                              useTrusted);
 
-                    pck.Save();
+                        ExecuteQueriesAndSaveToExcel(pck, connectionString, serverQueries, "", "", autoFitColumns,
+                                                     queryTimeoutSeconds);
+
+                        if (databases.Count > 0)
+                        {
+                            int databaseNo = 1;
+                            foreach (var db in databases)
+                            {
+                                connectionString = GetConnectionStringTemplate(servername, db, username, password,
+                                                                               useTrusted);
+                                ExecuteQueriesAndSaveToExcel(pck, connectionString, dbQueries, db.Trim(),
+                                                             databaseNo.ToString(CultureInfo.InvariantCulture),
+                                                             autoFitColumns, queryTimeoutSeconds);
+                                databaseNo++;
+                            }
+                        }
+
+                        pck.Save();
+                    }
                 }
             }
         }
