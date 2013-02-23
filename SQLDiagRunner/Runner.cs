@@ -33,10 +33,10 @@ namespace SQLDiagRunner
 
             foreach (var servername in servers)
             {
-                string dateString = DateTime.Now.ToString("yyyyMMdd_hhmmss_");
+                var dateString = DateTime.Now.ToString("yyyyMMdd_hhmmss_");
                 _dictWorksheet.Clear();
 
-                string outputFilepath = GetOutputFilepath(outputFolder, servername, dateString);
+                var outputFilepath = GetOutputFilepath(outputFolder, servername, dateString);
 
                 using (var fs = new FileStream(outputFilepath, FileMode.Create))
                 {
@@ -46,18 +46,14 @@ namespace SQLDiagRunner
 
                         ExecuteQueriesAndSaveToExcel(pck, connectionString, serverQueries, "", "", autoFitColumns, queryTimeoutSeconds);
 
-                        if (databases.Count > 0)
+                        int databaseNo = 1;
+                        foreach (var db in databases)
                         {
-                            int databaseNo = 1;
-                            foreach (var db in databases)
-                            {
-                                connectionString = GetConnectionStringTemplate(servername, db, username, password,
-                                                                               useTrusted);
-                                ExecuteQueriesAndSaveToExcel(pck, connectionString, dbQueries, db.Trim(),
-                                                             databaseNo.ToString(CultureInfo.InvariantCulture),
-                                                             autoFitColumns, queryTimeoutSeconds);
-                                databaseNo++;
-                            }
+                            connectionString = GetConnectionStringTemplate(servername, db, username, password, useTrusted);
+                            ExecuteQueriesAndSaveToExcel(pck, connectionString, dbQueries, db.Trim(),
+                                                         databaseNo.ToString(CultureInfo.InvariantCulture),
+                                                         autoFitColumns, queryTimeoutSeconds);
+                            databaseNo++;
                         }
 
                         pck.Save();
@@ -102,7 +98,7 @@ namespace SQLDiagRunner
                         ExcelRangeBase range = ws.Cells["A2"].LoadFromDataTable(datatable, true);
 
                         ws.Row(2).Style.Font.Bold = true;
- 
+
                         // find datetime columns and set formatting
                         int numcols = datatable.Columns.Count;
                         for (int i = 0; i < numcols; i++)
