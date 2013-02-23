@@ -42,11 +42,9 @@ namespace SQLDiagRunner
                 {
                     using (var pck = new ExcelPackage(fs))
                     {
-                        string connectionString = GetConnectionStringTemplate(servername, "master", username, password,
-                                                                              useTrusted);
+                        var connectionString = GetConnectionStringTemplate(servername, "master", username, password, useTrusted);
 
-                        ExecuteQueriesAndSaveToExcel(pck, connectionString, serverQueries, "", "", autoFitColumns,
-                                                     queryTimeoutSeconds);
+                        ExecuteQueriesAndSaveToExcel(pck, connectionString, serverQueries, "", "", autoFitColumns, queryTimeoutSeconds);
 
                         if (databases.Count > 0)
                         {
@@ -162,7 +160,7 @@ namespace SQLDiagRunner
             return s.Substring(0, Math.Min(31, s.Length));
         }
 
-        private string GetConnectionStringTemplate
+        private static string GetConnectionStringTemplate
         (
             string servername,
             string database,
