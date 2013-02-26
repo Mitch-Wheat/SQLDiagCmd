@@ -112,7 +112,8 @@ namespace SQLDiagUI
                 var runner = new Runner();
                 runner.ExecuteQueries(servers, txtUsername.Text, txtPassword.Text,
                                       txtScriptLocation.Text, txtOutputFolder.Text, databases,
-                                      chkTrustedConnection.Checked, chkAutoFitExcelColumns.Checked, Int32.Parse(txtTimeout.Text));
+                                      chkTrustedConnection.Checked, chkAutoFitExcelColumns.Checked, 
+                                      Int32.Parse(txtTimeout.Text));
             }
             finally
             {

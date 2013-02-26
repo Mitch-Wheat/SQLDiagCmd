@@ -134,9 +134,9 @@ namespace SQLDiagRunner
 
         private string GetWorkSheetName(string queryTitle, string worksheetPrefix)
         {
-            string worksheetName = string.IsNullOrEmpty(worksheetPrefix) ? queryTitle : worksheetPrefix + " " + queryTitle;
+            var worksheetName = string.IsNullOrEmpty(worksheetPrefix) ? queryTitle : worksheetPrefix + " " + queryTitle;
 
-            string worksheetNameSanitised = SanitiseWorkSheetName(worksheetName);
+            var worksheetNameSanitised = SanitiseWorkSheetName(worksheetName);
 
             // Check if name already exists: 31 char limit for worksheet names!
             while (_dictWorksheet.Contains(worksheetNameSanitised))
@@ -149,7 +149,7 @@ namespace SQLDiagRunner
             return worksheetNameSanitised;
         }
 
-        private string SanitiseWorkSheetName(string wsname)
+        private static string SanitiseWorkSheetName(string wsname)
         {
             var s = wsname.RemoveInvalidExcelChars();
 
@@ -166,8 +166,8 @@ namespace SQLDiagRunner
         )
         {
             const string applicationName = "SQL Server Diagnostic Script Runner";
-            const string trustedConnectionStringTemplate = "server={0};database={1};Trusted_Connection=True;Application Name={2}";
-            const string sqlLoginConnectionStringTemplate = "server={0};database={1};username={2};password={3};Application Name={4}";
+            const string trustedConnectionStringTemplate = "Server={0};Database={1};Trusted_Connection=True;Application Name={2}";
+            const string sqlLoginConnectionStringTemplate = "Server={0};Database={1};User Id={2};Password={3};Application Name={4}";
 
             if (trusted)
             {
