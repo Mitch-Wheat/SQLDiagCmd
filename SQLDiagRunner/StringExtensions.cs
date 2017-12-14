@@ -2,7 +2,6 @@
 using System.IO;
 using System.Text;
 
-
 namespace SQLDiagRunner
 {
     public static class StringExtensions

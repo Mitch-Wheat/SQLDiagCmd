@@ -15,12 +15,12 @@ namespace SQLDiagRunner
 
         public void ExecuteQueries
         (
-            IList<string> servers,
+            IEnumerable<string> servers,
             string username,
             string password,
             string scriptLocation,
             string outputFolder,
-            IList<string> databases,
+            IEnumerable<string> databases,
             bool useTrusted,
             bool autoFitColumns,
             int queryTimeoutSeconds
@@ -33,10 +33,9 @@ namespace SQLDiagRunner
 
             foreach (var servername in servers)
             {
-                var dateString = DateTime.Now.ToString("yyyyMMdd_hhmmss_");
                 _dictWorksheet.Clear();
 
-                var outputFilepath = GetOutputFilepath(outputFolder, servername, dateString);
+                var outputFilepath = GetOutputFilepath(outputFolder, servername);
 
                 using (var fs = new FileStream(outputFilepath, FileMode.Create))
                 {
@@ -46,10 +45,15 @@ namespace SQLDiagRunner
 
                         ExecuteQueriesAndSaveToExcel(pck, connectionString, serverQueries, "", "", autoFitColumns, queryTimeoutSeconds);
 
+                        // Not enough room in Excel WorkSheet names for the full database name, so prefix with DB number 1 to N.
                         int databaseNo = 1;
                         foreach (var db in databases)
                         {
                             connectionString = GetConnectionStringTemplate(servername, db, username, password, useTrusted);
+
+                            // TODO: check if database exists...
+
+
                             ExecuteQueriesAndSaveToExcel(pck, connectionString, dbQueries, db.Trim(),
                                                          databaseNo.ToString(CultureInfo.InvariantCulture),
                                                          autoFitColumns, queryTimeoutSeconds);
@@ -62,8 +66,10 @@ namespace SQLDiagRunner
             }
         }
 
-        private static string GetOutputFilepath(string outputFolder, string servername, string dateString)
+        private static string GetOutputFilepath(string outputFolder, string servername)
         {
+            var dateString = DateTime.Now.ToString("yyyyMMdd_hhmmss_");
+
             string ret = Directory.Exists(outputFolder)
                              ? Path.Combine(outputFolder, dateString + servername.ReplaceInvalidFilenameChars("_") + ".xlsx")
                              : outputFolder;
@@ -76,7 +82,7 @@ namespace SQLDiagRunner
             ExcelPackage pck,
             string connectionstring,
             IEnumerable<SqlQuery> queries,
-            string database,
+            string databaseName,
             string worksheetPrefix,
             bool autoFitColumns,
             int queryTimeoutSeconds
@@ -84,47 +90,54 @@ namespace SQLDiagRunner
         {
             foreach (var q in queries)
             {
-                string query = GetQueryText(q, database);
+                string query = GetQueryText(q, databaseName);
                 string worksheetName = GetWorkSheetName(q.Title, worksheetPrefix);
-
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add(worksheetName);
+
                 try
                 {
-                    ws.Cells["A1"].Value = database;
+                    ws.Cells["A1"].Value = databaseName;
 
-                    DataTable datatable = QueryExecutor.Execute(connectionstring, query, queryTimeoutSeconds);
-                    if (datatable.Rows.Count > 0)
-                    {
-                        ExcelRangeBase range = ws.Cells["A2"].LoadFromDataTable(datatable, true);
+                    var dt = QueryExecutor.Execute(connectionstring, query, queryTimeoutSeconds);
 
-                        ws.Row(2).Style.Font.Bold = true;
-
-                        // find datetime columns and set formatting
-                        int numcols = datatable.Columns.Count;
-                        for (int i = 0; i < numcols; i++)
-                        {
-                            var column = datatable.Columns[i];
-                            if (column.DataType == typeof(DateTime))
-                            {
-                                ws.Column(i + 1).Style.Numberformat.Format = "yyyy-mm-dd hh:MM:ss";
-                            }
-                        }
-
-                        if (autoFitColumns)
-                        {
-                            range.AutoFitColumns();
-                        }
-                    }
-                    else
-                    {
-                        ws.Cells["A2"].Value = "None Found";
-                    }
+                    SaveDataTableToWorksheet(dt, ws, autoFitColumns);
                 }
                 catch (Exception ex)
                 {
                     ws.Cells["A2"].Value = ex.Message;
                 }
             }
+        }
+
+        private void SaveDataTableToWorksheet(DataTable dt, ExcelWorksheet ws, bool autoFitColumns)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                ExcelRangeBase range = ws.Cells["A2"].LoadFromDataTable(dt, true);
+
+                ws.Row(2).Style.Font.Bold = true;
+
+                // find datetime columns and set formatting
+                int numcols = dt.Columns.Count;
+                for (int i = 0; i < numcols; i++)
+                {
+                    var column = dt.Columns[i];
+                    if (column.DataType == typeof(DateTime))
+                    {
+                        ws.Column(i + 1).Style.Numberformat.Format = "yyyy-mm-dd hh:MM:ss";
+                    }
+                }
+
+                if (autoFitColumns)
+                {
+                    range.AutoFitColumns();
+                }
+            }
+            else
+            {
+                ws.Cells["A2"].Value = "None Found";
+            }
+
         }
 
         private string GetQueryText(SqlQuery q, string database)

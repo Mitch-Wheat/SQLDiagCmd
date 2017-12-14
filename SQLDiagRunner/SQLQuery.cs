@@ -1,5 +1,4 @@
 ﻿
-
 namespace SQLDiagRunner
 {
     public class SqlQuery

@@ -126,7 +126,7 @@
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(408, 19);
             this.labelCopyright.TabIndex = 25;
-            this.labelCopyright.Text = "Copyright (c) Mitch Wheat 2012-2013";
+            this.labelCopyright.Text = "Copyright (c) Mitch Wheat 2012-2018";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // linkLabel1

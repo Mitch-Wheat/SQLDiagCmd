@@ -35,7 +35,6 @@ namespace SQLDiagUI
         {
             var ofd = new OpenFileDialog
                         {
-
                             Title = "Select SQL Script File",
                             InitialDirectory = @".",
                             Filter = "Text files (*.txt)|*.txt|SQL files (*.sql)|*.sql",
@@ -106,8 +105,9 @@ namespace SQLDiagUI
                     }
                 }
 
-                var databases = new List<string>(txtDBs.Text.Trim().Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
-                var servers = new List<string>(txtServer.Text.Trim().Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+                var sep = new[] { ';' };
+                var databases = new List<string>(txtDBs.Text.Trim().Split(sep, StringSplitOptions.RemoveEmptyEntries));
+                var servers = new List<string>(txtServer.Text.Trim().Split(sep, StringSplitOptions.RemoveEmptyEntries));
 
                 var runner = new Runner();
                 runner.ExecuteQueries(servers, txtUsername.Text, txtPassword.Text,

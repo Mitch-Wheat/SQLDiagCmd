@@ -4,6 +4,6 @@
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>-E -S MUTLEY -i "M:\Develop\Samples\SQLDiagRunner\SQL Server 2008 Diagnostic Information Queries (December 2012).sql" -o c:\temp -d "a.b .c_d;CCWin.Central.Production;AdventureWorks2008R2" -A</StartArguments>
+    <StartArguments>-E -S K7 -i "20171201 SQL Server 2016 Diagnostic Information Queries.sql" -o c:\temp -d "DWConfiguration%3bDWQueue" -A</StartArguments>
   </PropertyGroup>
 </Project>
