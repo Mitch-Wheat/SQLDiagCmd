@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SQLDiagRunner">
+      <HintPath>..\SQLDiagCmd\SQLDiagRunner.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -92,13 +95,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SQLDiagRunner\SQLDiagRunner.csproj">
-      <Project>{90D2AD1D-981E-4A21-AB0B-425D523FD2B6}</Project>
-      <Name>SQLDiagRunner</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\Libs\EPPlus.dll">

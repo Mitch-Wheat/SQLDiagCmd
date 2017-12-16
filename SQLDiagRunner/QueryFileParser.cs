@@ -78,7 +78,7 @@ namespace SQLDiagRunner
                 matchStart = _regexQueryStart.Match(queryLines[i]);
 
                 string title = GetQueryTitle(matchStart);
-                int number = GetQueryNumber(matchStart);
+                string number = GetQueryNumber(matchStart);
 
                 // End of query: readlines until next query is found or EOF
                 while (i < endLine)
@@ -122,18 +122,13 @@ namespace SQLDiagRunner
             return result;
         }
 
-        private int GetQueryNumber(Match match)
+        private string GetQueryNumber(Match match)
         {
-            int result = 0;
+            string result = "";
 
             if (match.Groups.Count > 2)
             {
-                int tmp;
-
-                if (int.TryParse(match.Groups[2].ToString().Trim(), out tmp))
-                {
-                    result = tmp;
-                }
+                result = match.Groups[2].ToString();
             }
 
             return result;

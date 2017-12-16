@@ -22,13 +22,21 @@ namespace SQLDiagRunner
             IEnumerable<string> databases,
             bool useTrusted,
             bool autoFitColumns,
-            int queryTimeoutSeconds
+            int queryTimeoutSeconds,
+            IEnumerable<string> ExcludeQueryNumbers
         )
         {
             var parser = new QueryFileParser(scriptLocation);
             var queries = parser.Load();
+
             var serverQueries = queries.Where(q => q.ServerScope).ToList();
             var dbQueries = queries.Where(q => !q.ServerScope).ToList();
+
+            if (ExcludeQueryNumbers != null)
+            {
+                serverQueries = serverQueries.Where(q => !ExcludeQueryNumbers.Contains(q.QueryNumber)).ToList();
+                dbQueries = dbQueries.Where(q => !ExcludeQueryNumbers.Contains(q.QueryNumber)).ToList();
+            }
 
             foreach (var servername in servers)
             {

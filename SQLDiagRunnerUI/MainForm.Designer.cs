@@ -55,11 +55,14 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtExcludeQueryNumbers = new System.Windows.Forms.TextBox();
             this.gbConnection.SuspendLayout();
             this.gbScript.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -168,7 +171,7 @@
             // 
             // btExecute
             // 
-            this.btExecute.Location = new System.Drawing.Point(453, 327);
+            this.btExecute.Location = new System.Drawing.Point(453, 378);
             this.btExecute.Name = "btExecute";
             this.btExecute.Size = new System.Drawing.Size(61, 23);
             this.btExecute.TabIndex = 0;
@@ -262,14 +265,14 @@
             this.gbScript.Size = new System.Drawing.Size(506, 50);
             this.gbScript.TabIndex = 2;
             this.gbScript.TabStop = false;
-            this.gbScript.Text = "SQL Diagnostic Script:";
+            this.gbScript.Text = "SQL Script to Run:";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtOutputFolder);
             this.groupBox1.Controls.Add(this.btBrowseOutputFolder);
             this.groupBox1.Controls.Add(this.chkAutoFitExcelColumns);
-            this.groupBox1.Location = new System.Drawing.Point(15, 248);
+            this.groupBox1.Location = new System.Drawing.Point(15, 303);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(506, 69);
             this.groupBox1.TabIndex = 4;
@@ -296,9 +299,9 @@
             this.menuStrip.Dock = System.Windows.Forms.DockStyle.Right;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(470, 0);
+            this.menuStrip.Location = new System.Drawing.Point(468, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(67, 361);
+            this.menuStrip.Size = new System.Drawing.Size(67, 412);
             this.menuStrip.TabIndex = 21;
             // 
             // aboutToolStripMenuItem
@@ -308,11 +311,31 @@
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtExcludeQueryNumbers);
+            this.groupBox3.Location = new System.Drawing.Point(15, 247);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(506, 50);
+            this.groupBox3.TabIndex = 22;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Query Numbers to Exclude:";
+            // 
+            // txtExcludeQueryNumbers
+            // 
+            this.txtExcludeQueryNumbers.Location = new System.Drawing.Point(18, 19);
+            this.txtExcludeQueryNumbers.Name = "txtExcludeQueryNumbers";
+            this.txtExcludeQueryNumbers.Size = new System.Drawing.Size(479, 20);
+            this.txtExcludeQueryNumbers.TabIndex = 0;
+            this.toolTip.SetToolTip(this.txtExcludeQueryNumbers, "Location of Glenn Berry\'s SQL diagnostic script that targets your version of SQL " +
+        "Server.");
+            // 
             // FrmSqlDiag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 361);
+            this.ClientSize = new System.Drawing.Size(535, 412);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbScript);
@@ -337,6 +360,8 @@
             this.groupBox2.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,6 +394,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtExcludeQueryNumbers;
     }
 }
 

@@ -5,10 +5,10 @@ namespace SQLDiagRunner
     {
         public string QueryText { get; set; }
         public string Title { get; set; }
-        public int QueryNumber { get; set; }
+        public string QueryNumber { get; set; }
         public bool ServerScope { get; set; }
 
-        public SqlQuery(string queryText, string title, bool serverScope, int queryNumber)
+        public SqlQuery(string queryText, string title, bool serverScope, string queryNumber)
         {
             QueryText = queryText;
             Title = title;

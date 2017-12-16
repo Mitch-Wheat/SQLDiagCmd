@@ -9,7 +9,7 @@ using SQLDiagRunner;
 namespace SQLDiagCmd
 {
     /// <summary>
-    /// NOTE: * This class's sole purpose is to delay type loads, so that the AssemblyResolver hookup in main is early enough.
+    /// NOTE: * This class's sole purpose is to delay type loads, so that the AssemblyResolver hookup in main happens early enough.
     /// </summary>
     class RunnerProxy
     {
@@ -36,12 +36,12 @@ namespace SQLDiagCmd
             [Option("t", "timeout", HelpText = "Query timeout in seconds.", DefaultValue = 360)]
             public int  QueryTimeout { get; set; }
 
-            [OptionList("S", "servers", Separator = ';', HelpText = "Semicolon separated list of Server names or instances to run queries against." +
+            [OptionList("S", "servers", Required = true, Separator = ';', HelpText = "Semicolon separated list of Server names or instances to run queries against." +
                 " Separate each server/instance name with a semicolon." + " Do not include spaces.")]
             [DefaultValue(null)]
             public IList<string> Servers { get; set; }
 
-            [OptionList("d", "databases", Separator = ';', HelpText = "Semicolon separated list of specific databases to run database specific queries against." +
+            [OptionList("d", "databases", Required = true, Separator = ';', HelpText = "Semicolon separated list of specific databases to run database specific queries against." +
     " Separate each database with a semicolon." + " Do not include spaces.")]
             [DefaultValue(null)]
             public IList<string> SpecificDatabases { get; set; }
@@ -49,7 +49,7 @@ namespace SQLDiagCmd
             [OptionList("x", "excludequeries", Separator = ';', HelpText = "Semicolon separated list of query numbers that should not be run." +
     " Separate each number with a semicolon." + " Do not include spaces" + " Used to exclude long running queries (such as fragmention).")]
             [DefaultValue(null)]
-            public IList<int> ExcludeQueryNumbers { get; set; }
+            public IList<string> ExcludeQueryNumbers { get; set; }
 
 
             [HelpOption]
@@ -115,7 +115,8 @@ namespace SQLDiagCmd
             var runner = new Runner();
             runner.ExecuteQueries(options.Servers, options.Username, options.Password,
                                   options.InputFile, options.OutputFolder, options.SpecificDatabases,
-                                  options.UseTrusted, options.AutoFitColumns, options.QueryTimeout);
+                                  options.UseTrusted, options.AutoFitColumns, options.QueryTimeout, 
+                                  options.ExcludeQueryNumbers);
         }
     }
 }
