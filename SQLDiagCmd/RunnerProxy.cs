@@ -36,20 +36,21 @@ namespace SQLDiagCmd
             [Option("t", "timeout", HelpText = "Query timeout in seconds.", DefaultValue = 360)]
             public int  QueryTimeout { get; set; }
 
-            //[Option("S", "servername", Required = true, HelpText = "Server name or instance to run queries against.")]
-            //public string ServerName { get; set; }
-
             [OptionList("S", "servers", Separator = ';', HelpText = "Semicolon separated list of Server names or instances to run queries against." +
-                " Separate each server/instance name with a semicolon." + " Do not include spaces between server names and semicolon.")]
+                " Separate each server/instance name with a semicolon." + " Do not include spaces.")]
             [DefaultValue(null)]
             public IList<string> Servers { get; set; }
 
             [OptionList("d", "databases", Separator = ';', HelpText = "Semicolon separated list of specific databases to run database specific queries against." +
-    " Separate each database with a semicolon." + " Do not include spaces between databases and semicolon.")]
+    " Separate each database with a semicolon." + " Do not include spaces.")]
             [DefaultValue(null)]
             public IList<string> SpecificDatabases { get; set; }
 
- 
+            [OptionList("x", "excludequeries", Separator = ';', HelpText = "Semicolon separated list of query numbers that should not be run." +
+    " Separate each number with a semicolon." + " Do not include spaces" + " Used to exclude long running queries (such as fragmention).")]
+            [DefaultValue(null)]
+            public IList<int> ExcludeQueryNumbers { get; set; }
+
 
             [HelpOption]
             public string GetUsage()
@@ -57,22 +58,25 @@ namespace SQLDiagCmd
                 var help = new HelpText
                 {
                     Heading = "SQLDiagCmd",
-                    Copyright = new CopyrightInfo("Mitch Wheat", 2012, 2018),
+                    Copyright = new CopyrightInfo("Mitch Wheat", 2012, DateTime.Now.Year),
                     AdditionalNewLineAfterOption = true,
                     AddDashesToOption = true
                 };
                 HandleParsingErrorsInHelp(help);
 
+                help.AddPreOptionsLine("");
                 help.AddPreOptionsLine(""); 
                 help.AddPreOptionsLine("This is free software. You may redistribute copies of it under the terms of");
                 help.AddPreOptionsLine("the MIT License <http://www.opensource.org/licenses/mit-license.php>.");
                 help.AddPreOptionsLine("It uses EPPlus <http://epplus.codeplex.com/> and");
                 help.AddPreOptionsLine("the Command Line Parser Library <http://commandline.codeplex.com/>.");
                 help.AddPreOptionsLine("");
-                help.AddPreOptionsLine("Usage: SQLDiagCmd -E -S servername -i queries.sql -o C:\\outputfolder -d databaselist -A");
-                help.AddPreOptionsLine("       SQLDiagCmd -S servername -U username -P password -i queries.sql -o C:\\outputfolder -d databaselist");
-                help.AddPreOptionsLine("       SQLDiagCmd -E -S servername -i queries.sql -o C:\\outputfolder -A");
-                help.AddPreOptionsLine("       SQLDiagCmd -E -S serverlist -d databaselist -i queries.sql -o C:\\outputfolder -A");
+                help.AddPreOptionsLine("Usage:");
+                help.AddPreOptionsLine("   SQLDiagCmd -E -S servername -i queries.sql -o C:\\outputfolder -d databaselist -A");
+                help.AddPreOptionsLine("   SQLDiagCmd -S servername -U username -P password -i queries.sql -o C:\\outputfolder -d databaselist");
+                help.AddPreOptionsLine("   SQLDiagCmd -E -S servername -i queries.sql -o C:\\outputfolder -A");
+                help.AddPreOptionsLine("   SQLDiagCmd -E -S serverlist -d databaselist -i queries.sql -o C:\\outputfolder -A");
+                help.AddPreOptionsLine("   SQLDiagCmd -E -S server -d database -i 'SQL Server 2016 Diagnostic Information Queries.sql' -o C:\\output -A -x 37;65;66;71");
                 help.AddPreOptionsLine("");
                 help.AddPreOptionsLine("(serverlist and databaselist are semi-colon separated with no spaces)");
                 help.AddOptions(this);

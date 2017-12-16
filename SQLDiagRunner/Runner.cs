@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -11,7 +10,7 @@ namespace SQLDiagRunner
 {
     public class Runner
     {
-        private readonly HashSet<string> _dictWorksheet = new HashSet<string>();
+        private readonly HashSet<string> _worksheetNames = new HashSet<string>();
 
         public void ExecuteQueries
         (
@@ -33,7 +32,7 @@ namespace SQLDiagRunner
 
             foreach (var servername in servers)
             {
-                _dictWorksheet.Clear();
+                _worksheetNames.Clear();
 
                 var outputFilepath = GetOutputFilepath(outputFolder, servername);
 
@@ -45,7 +44,7 @@ namespace SQLDiagRunner
 
                         ExecuteQueriesAndSaveToExcel(pck, connectionString, serverQueries, "", "", autoFitColumns, queryTimeoutSeconds);
 
-                        // Not enough room in Excel WorkSheet names for the full database name, so prefix with DB number 1 to N.
+                        // Not enough room in Excel WorkSheet tab names for the full database name, so prefix with DB number 1 to N.
                         int databaseNo = 1;
                         foreach (var db in databases)
                         {
@@ -55,8 +54,7 @@ namespace SQLDiagRunner
 
 
                             ExecuteQueriesAndSaveToExcel(pck, connectionString, dbQueries, db.Trim(),
-                                                         databaseNo.ToString(CultureInfo.InvariantCulture),
-                                                         autoFitColumns, queryTimeoutSeconds);
+                                                         databaseNo.ToString(), autoFitColumns, queryTimeoutSeconds);
                             databaseNo++;
                         }
 
@@ -90,7 +88,7 @@ namespace SQLDiagRunner
         {
             foreach (var q in queries)
             {
-                string query = GetQueryText(q, databaseName);
+                string query = q.GetQueryUseDBHelper(databaseName);
                 string worksheetName = GetWorkSheetName(q.Title, worksheetPrefix);
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add(worksheetName);
 
@@ -117,7 +115,7 @@ namespace SQLDiagRunner
 
                 ws.Row(2).Style.Font.Bold = true;
 
-                // find datetime columns and set formatting
+                // find all datetime columns and set formatting
                 int numcols = dt.Columns.Count;
                 for (int i = 0; i < numcols; i++)
                 {
@@ -140,33 +138,21 @@ namespace SQLDiagRunner
 
         }
 
-        private string GetQueryText(SqlQuery q, string database)
-        {
-            return string.IsNullOrEmpty(database) ? q.QueryText : "USE [" + database + "] \r\n " + q.QueryText;
-        }
-
         private string GetWorkSheetName(string queryTitle, string worksheetPrefix)
         {
             var worksheetName = string.IsNullOrEmpty(worksheetPrefix) ? queryTitle : worksheetPrefix + " " + queryTitle;
 
-            var worksheetNameSanitised = SanitiseWorkSheetName(worksheetName);
+            var worksheetNameSanitised = worksheetName.SanitiseWorkSheetName();
 
             // Check if name already exists: 31 char limit for worksheet names!
-            while (_dictWorksheet.Contains(worksheetNameSanitised))
+            while (_worksheetNames.Contains(worksheetNameSanitised))
             {
                 worksheetNameSanitised = worksheetNameSanitised.RandomiseLastNChars(3);
             }
 
-            _dictWorksheet.Add(worksheetNameSanitised);
+            _worksheetNames.Add(worksheetNameSanitised);
 
             return worksheetNameSanitised;
-        }
-
-        private static string SanitiseWorkSheetName(string wsname)
-        {
-            var s = wsname.RemoveInvalidExcelChars();
-
-            return s.Substring(0, Math.Min(31, s.Length));
         }
 
         private static string GetConnectionStringTemplate

@@ -41,11 +41,34 @@ namespace SQLDiagRunner
             return s.Replace(invalidExcelChars, "");
         }
 
+        public static string SanitiseWorkSheetName(this string s)
+        {
+            var wsname = s.RemoveInvalidExcelChars();
+
+            return wsname.Substring(0, Math.Min(31, wsname.Length));
+        }
+
         public static string ReplaceInvalidFilenameChars(this string s, string newVal)
         {
             var invalidFilenameChars = Path.GetInvalidFileNameChars();
 
             return s.Replace(invalidFilenameChars, newVal);
         }
+
+        public static string RemoveStartAndEndChars(this string s, string startChar, string endChar)
+        {
+            int start = 0;
+            int len = s.Length;
+            if (s.StartsWith(startChar))
+            {
+                start = 1;
+                len--;
+            }
+            if (s.EndsWith(endChar))
+                len--;
+
+            return s.Substring(start, len);
+        }
+
     }
 }

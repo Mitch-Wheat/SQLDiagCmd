@@ -1,16 +1,17 @@
-﻿
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace SQLDiagRunner
 {
     public class QueryFileParser
     {
         private readonly string _filepath;
-        private const string PatternQueryStart = @"^--(.*)\(Query\s*\d*\)(\s*\((.*)\)|\s*.*)$";
+        private const string PatternQueryStart = @"^--(.*)\(Query\s*(\d*)\)(\s*\((.*)\)|\s*.*)$";
+        //                                             0              1     2     3
         private const string EndOfServerWideQueriesMarker = "-- Database specific queries";
 
         private readonly Regex _regexQueryStart = new Regex(PatternQueryStart, RegexOptions.Compiled|RegexOptions.IgnoreCase);
@@ -23,15 +24,13 @@ namespace SQLDiagRunner
         public List<SqlQuery> Load()
         {
             if (!File.Exists(_filepath))
-            {
                 throw new FileNotFoundException(_filepath);
-            }
 
             string[] queryText = File.ReadAllLines(_filepath);
 
             int endLine = FindEndofServerWideQueries(queryText);
 
-            List<SqlQuery> result = Parse(queryText, 0, endLine, true);
+            var result = Parse(queryText, 0, endLine, true);
             result.AddRange(Parse(queryText, endLine, queryText.Count() - 1, false));
 
             return result;
@@ -52,35 +51,40 @@ namespace SQLDiagRunner
             return i - 1;
         }
 
-        private List<SqlQuery> Parse(string[] queryAllLines, int startLine, int endLine, bool serverWide)
+        private List<SqlQuery> Parse(string[] queryLines, int startLine, int endLine, bool serverWide)
         {
+            if (startLine >= endLine)
+                throw new System.ArgumentOutOfRangeException("startLine must be less than endline!");
+
             var result = new List<SqlQuery>();
+            Match matchStart;
 
             int i = startLine;
-
             // skip any pre-amble
-            while (i < endLine)
+            do
             {
-                Match matchStart = _regexQueryStart.Match(queryAllLines[i]);
+                matchStart = _regexQueryStart.Match(queryLines[i]);
                 if (matchStart.Success)
                     break;
 
-                i++;
-            }
+            } while (++i < endLine);
 
             while (i < endLine)
             {
-                string line = queryAllLines[i];
-                var query = new StringBuilder(queryAllLines[i]);
+                string line = queryLines[i];
+                var query = new StringBuilder(line);
                 query.AppendLine("");
 
-                string title = GetQueryTitle(line);
+                matchStart = _regexQueryStart.Match(queryLines[i]);
+
+                string title = GetQueryTitle(matchStart);
+                int number = GetQueryNumber(matchStart);
 
                 // End of query: readlines until next query is found or EOF
                 while (i < endLine)
                 {
                     i++;
-                    line = queryAllLines[i];
+                    line = queryLines[i];
                     Match matchEnd = _regexQueryStart.Match(line);
                     if (matchEnd.Success)
                         break;
@@ -88,37 +92,52 @@ namespace SQLDiagRunner
                     query.AppendLine(line);
                 }
 
-                result.Add(new SqlQuery(query.ToString(), title, serverWide));
+                result.Add(new SqlQuery(query.ToString(), title, serverWide, number));
             }
 
             return result;
         }
 
-        private string GetQueryTitle(string line)
+        private string GetQueryTitle(Match match)
         {
-            Match match = _regexQueryStart.Match(line);
-            string title = line;
+            string result = "No Title Found";
 
-            if (match.Groups.Count > 2 && !string.IsNullOrEmpty(match.Groups[2].ToString().Trim()))
+            if (match.Groups.Count > 4)
             {
-                string tmp = match.Groups[2].ToString().Trim();
-                int start = 0;
-                int len = tmp.Length;
-                if (tmp.StartsWith("("))
+                var tmp = match.Groups[4].ToString().Trim();
+                if (tmp.Length > 0)
                 {
-                    start = 1;
-                    len--;
+                    result = tmp;
                 }
-                if (tmp.EndsWith(")"))
-                    len--;
-                title = tmp.Substring(start, len);
             }
-            else if (match.Groups.Count > 1)
+            else if (match.Groups.Count > 3)
             {
-                title = match.Groups[1].ToString().Trim();
+                string tmp = match.Groups[3].ToString().Trim();
+                if (tmp.Length > 0)
+                {
+                    result = tmp.RemoveStartAndEndChars("(", ")");
+                }
             }
 
-            return title;
+            return result;
         }
+
+        private int GetQueryNumber(Match match)
+        {
+            int result = 0;
+
+            if (match.Groups.Count > 2)
+            {
+                int tmp;
+
+                if (int.TryParse(match.Groups[2].ToString().Trim(), out tmp))
+                {
+                    result = tmp;
+                }
+            }
+
+            return result;
+        }
+
     }
 }
