@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Reflection;
 
-
 namespace SQLDiagCmd
 {
     class Program
     {
-
-        // TOD0 : add option to run long running queries.....
-
         static void Main(string[] args)
         {
             SetEmbeddedAssembliesResolver();
@@ -31,7 +27,6 @@ namespace SQLDiagCmd
                     return Assembly.Load(assemblyData);
                 }
             };
-
         }
     }
 }

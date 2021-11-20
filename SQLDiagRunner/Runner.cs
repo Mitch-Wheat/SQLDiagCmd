@@ -74,7 +74,7 @@ namespace SQLDiagRunner
 
         private static string GetOutputFilepath(string outputFolder, string servername)
         {
-            var dateString = DateTime.Now.ToString("yyyyMMdd_hhmmss_");
+            var dateString = DateTime.Now.ToString("yyyyMMdd_HHmmss_");
 
             string ret = Directory.Exists(outputFolder)
                              ? Path.Combine(outputFolder, dateString + servername.ReplaceInvalidFilenameChars("_") + ".xlsx")
@@ -130,7 +130,7 @@ namespace SQLDiagRunner
                     var column = dt.Columns[i];
                     if (column.DataType == typeof(DateTime))
                     {
-                        ws.Column(i + 1).Style.Numberformat.Format = "yyyy-mm-dd hh:MM:ss";
+                        ws.Column(i + 1).Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
                     }
                 }
 
@@ -182,7 +182,6 @@ namespace SQLDiagRunner
             }
 
             return string.Format(sqlLoginConnectionStringTemplate, servername, database, username, password, applicationName);
-
         }
     }
 }
